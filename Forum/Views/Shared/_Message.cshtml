@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+@model Forum.Models.Message
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.Content)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.PublicationTime)
+    </td>
+    <td>
+        @if (User.IsInRole("Admin") || User.Identity.GetUserId() == Model.Owner.Id)
+        {
+            @Html.ActionLink("Edit", "Edit", "Messages", new { id = Model.Id }, null)
+            @:|
+            @Html.ActionLink("Delete", "Delete", "Messages", new { id = Model.Id }, null)
+        }
+    </td>
+</tr>
